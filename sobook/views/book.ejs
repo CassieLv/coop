@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sobook</title>
+    <link rel="shortcut icon" href="/images/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/index.css">
+    <!-- <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/share.min.css"> -->
+</head>
+
+<body style="background-color: #fff;">
+    <div class="header">
+        <img class="logo" src="/images/logo.png" alt="">
+        <div class="nav">
+            <div class="contents">
+                <ul class="navList">
+                    <li>小说文学</li>
+                    <li>历史传记</li>
+                    <li>人文社科</li>
+                    <li>励志成功</li>
+                    <li>经济管理</li>
+                    <li>学习教育</li>
+                    <li>生活时尚</li>
+                    <li>英文原版</li>
+                </ul>
+                <div class="search">
+                    <input type="text">
+                    <button>
+                        <span class="icon"></span>
+                        <span class="text">搜索</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contentMain">
+            <div class="content">
+                <%- book.brief %>
+            </div>
+        </div>
+
+        <script>
+            var right = document.querySelector('.book-right');
+            right.parentElement.removeChild(right);
+            var a = document.querySelector('.e-secret')
+            a.parentElement.removeChild(a);
+            var b = document.querySelector('.article-social');
+            b.parentElement.removeChild(b)
+        </script>
+</body>
+
+</html>

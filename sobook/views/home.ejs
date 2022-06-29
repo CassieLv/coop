@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sobook</title>
+    <link rel="shortcut icon" href="/images/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/index.css">
+
+</head>
+
+<body>
+    <div class="header">
+        <img class="logo" src="/images/logo.png" alt="">
+        <div class="nav">
+            <div class="contents">
+                <ul class="navList">
+                    <li><a href="/">首页</a></li>
+                    <% cataorys.forEach(function(item) { %>
+                    <li><a href="/cataory/<%- item.id %>/page/1"><%- item.cataory %></a></li>
+                    <% }) %>
+                </ul>
+                <div class="search">
+                    <input type="text" id="search">
+                    <button class="btn">
+                        <span class="icon"></span>
+                        <span class="text">搜索</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="booklist">
+            <% for(let i=0;i<books.length;i++){ %>
+            <a href="/books/<%- books[i].id %>">
+                <div class="book">
+                    <img src="<%- books[i].bookimg %>" alt="">
+                    <p><%-books[i].cataory%></p>
+                    <h5><%-books[i].bookname%></h5>
+                    <span><%-books[i].author%></span>
+                </div>
+            </a>
+            <% } %>
+        </div>
+        <div class="xinxi">
+            <h4>近期文章</h4>
+            <hr>
+            <ul class="info">
+                <% infos.forEach(function(infos){ %>
+                <li>
+                    <a href="/books/<%- infos.id %>">
+                        <%- infos.titles %>
+                    </a>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+
+    <div class="fenye">
+        <div class="pageBth">
+            <% if(page>1) { %>
+            <a class="ccc" href="/cataory/<%- cid %>/page/<%- (page-1) %>">上一页</a>
+            <% } %>
+
+                <% for(let i = startPage;i<=endPage;i++){ %>
+                <a class="ccc" <% if(page==i){ %> class="active" <%}%>  href="/cataory/<%=cid%>/page/<%=i%>"><%=i%> </a> <%}%>
+
+            <% if(page<pageAll){ %>
+            <a class="ccc" href="/cataory/<%=cid%>/page/<%=(page+1)%>">下一页</a>
+            <% } %>
+
+            <a class="ccc" class="allConut">共<%= pageAll %>页</a>
+        </div>
+        
+    </div>
+
+    <script>
+        let search = document.querySelector('#search');
+        let btn = document.querySelector('.btn');
+        btn.addEventListener('click', () => {
+            let results = search.value;
+            // console.log(results);
+            location.href = "/search/" + results
+        })
+    </script>
+</body>
+
+</html>

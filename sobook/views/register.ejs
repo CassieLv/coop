@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+<body>
+    <form action="/register" method="post">
+        <h3>注册页面</h3>
+        <label for="">
+            <input type="email" name="email" placeholder="邮箱">
+        </label>
+        <br>
+        <label for="">
+            <input type="text" name="username" placeholder="用户名">
+        </label>
+        <br>
+        <label for="">
+            <input type="password" name="password" placeholder="密码">
+        </label>
+        <label for="">
+            <input type="password" name="repassword" placeholder="确认密码">
+        </label>
+        <br>
+        <label for="">
+            <input disabled="disabled" class="button" type="submit" value="注册">
+        </label>
+    </form>
+    <script>
+        let formDiv = document.querySelector('form');
+        let inputs = document.querySelectorAll('form input');
+        let btn = document.querySelector('.button');
+        formDiv.oninput = () => {
+            // 判断是否有内容为空
+            let isAble = true;
+            inputs.forEach((item,i)=> {
+                console.log(item);
+                if (item.value == '') {
+                    isAble = false
+                }
+            })
+            // 正则匹配邮箱地址
+            let reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+            if (inputs[2].value == inputs[3].value && isAble && reg.test(inputs[0].value)) {
+                btn.disabled = false;
+                btn.style.cursor = 'pointer'
+            } else {
+                btn.disabled = true;
+                btn.style.cursor = 'not-allow'
+            }
+        }
+    </script>
+</body>
+</html>
